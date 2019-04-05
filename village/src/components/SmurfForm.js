@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class SmurfForm extends Component {
   constructor(props) {
@@ -8,11 +9,21 @@ class SmurfForm extends Component {
       age: '',
       height: ''
     };
+
+    console.log(this.props);
   }
 
   addSmurf = event => {
     event.preventDefault();
     // add code to create the smurf using the api
+
+    const newSmurf = {
+      name: this.state.name,
+      age: parseInt(this.state.age),
+      height: this.state.height
+    }
+
+    this.props.addSmurf(newSmurf);
 
     this.setState({
       name: '',
@@ -49,6 +60,7 @@ class SmurfForm extends Component {
           />
           <button type="submit">Add to the village</button>
         </form>
+        <Link to='/'>Return To Village</Link>
       </div>
     );
   }
